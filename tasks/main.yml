@@ -1,0 +1,28 @@
+---
+- name: Prepare target host
+  import_tasks: prepare.yml
+  when: vector_prepare | bool
+  tags:
+    - vector
+    - vector_prepare
+
+- name: Install vector
+  import_tasks: install.yml
+  when: vector_install | bool
+  tags:
+    - vector
+    - vector_install
+
+- name: configure vector
+  import_tasks: configure.yml
+  when: vector_configure | bool
+  tags:
+    - vector
+    - vector_configure
+
+- name: Provide system service for vector
+  import_tasks: service.yml
+  when: vector_service | bool
+  tags:
+    - vector
+    - vector_service

@@ -1,0 +1,26 @@
+####
+# IDE
+####
+.vscode/
+
+####
+# Python virtualenv
+####
+.venv
+venv
+
+####
+# Ansible
+####
+*.retry
+
+####
+# Vagrant & molecule
+####
+.vagrant/
+*.log
+*.pyc
+.molecule
+.cache
+.pytest_cache
+__pycache__/

@@ -1,0 +1,10 @@
+---
+- name: Ensure necessary packages installed
+  apt:
+    name:
+      - python3-apt
+      - apt-transport-https
+      - ca-certificates
+      - gnupg
+    state: present
+    cache_valid_time: 600

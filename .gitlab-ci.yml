@@ -1,0 +1,14 @@
+stages:
+  - lint
+
+before_script:
+  - make install_ansible_venv
+
+molecule_static_analyse:
+  stage: lint
+  script:
+    - make molecule_init_scenario
+    - make molecule_static_analyse
+  tags:
+    - shell
+    - docker

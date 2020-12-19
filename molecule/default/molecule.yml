@@ -1,0 +1,12 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+platforms:
+  - name: instance
+    box: ubuntu/bionic64
+provisioner:
+  name: ansible
+verifier:
+  name: ansible

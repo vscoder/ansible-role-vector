@@ -1,0 +1,29 @@
+---
+- name: Add apt key
+  apt_key:
+    url: https://repositories.timber.io/public/vector/cfg/gpg/gpg.3543DB2D0A2BC4B8.key
+    state: present
+
+- name: Add apt repo
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+    filename: timber-vector
+  loop:
+    - "deb https://repositories.timber.io/public/vector/deb/ubuntu {{ ansible_distribution_release }} main"
+    - "deb-src https://repositories.timber.io/public/vector/deb/ubuntu {{ ansible_distribution_release }} main"
+
+- name: "Install vector fixed version"
+  apt:
+    name: "vector={{ vector_install_version }}"
+    state: present
+    cache_valid_time: 600
+  when: vector_install_version is defined
+
+- name: "Install vector"
+  apt:
+    name: vector
+    state: present
+    cache_valid_time: 600
+    #policy_rc_d: 101
+  when: vector_install_version is not defined

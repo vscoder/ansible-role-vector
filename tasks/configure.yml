@@ -1,0 +1,7 @@
+---
+- name: Provide configuration file
+  template:
+    src: vector.yaml.j2
+    dest: /etc/vector/vector.yaml
+  notify:
+    - reload vector

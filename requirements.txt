@@ -1,0 +1,3 @@
+ansible>=2.10.0
+molecule[docker,vagrant]>=3.0.0
+python-vagrant==0.5.15

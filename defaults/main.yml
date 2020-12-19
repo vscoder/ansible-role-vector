@@ -1,0 +1,42 @@
+---
+###
+# Flags
+###
+# Include prepare.yml
+vector_prepare: yes
+# Include install.yml
+vector_install: yes
+# Include configure.yml
+vector_configure: yes
+# Include service.yml
+vector_service: yes
+
+###
+# Install
+###
+# Version of vector package to install
+#vector_install_version: not_defined_by_default
+
+###
+# Configure
+###
+vector_configure_config:
+  data_dir: "/var/lib/vector"
+  sources:
+    foo:
+      type: "stdin"
+  sinks:
+    bar:
+      inputs:
+        - "foo"
+      type: "console"
+      encoding:
+        codec: "text"
+
+###
+# Service
+###
+# Enable service start on system boot
+vector_service_enabled: yes
+# Set service status to
+vector_service_status: started

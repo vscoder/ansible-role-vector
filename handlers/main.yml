@@ -1,0 +1,5 @@
+---
+- name: reload vector
+  systemd:
+    name: vector
+    state: reloaded

@@ -1,0 +1,22 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: instance
+    #image: docker.io/geerlingguy/docker-ubuntu1804-ansible:latest
+    #image: joepublic/molecule-ubuntu:18.04
+    image: jrei/systemd-ubuntu:18.04
+    pre_build_image: true
+    privileged: True
+    volume_mounts:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    tmpfs:
+      - /run
+      - /tmp
+provisioner:
+  name: ansible
+  #log: true
+verifier:
+  name: ansible

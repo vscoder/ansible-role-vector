@@ -1,0 +1,10 @@
+---
+- name: Provide vector.service autostart status
+  systemd:
+    name: vector
+    enabled: "{{ vector_service_enabled | bool }}"
+
+- name: Provide vector.service status
+  systemd:
+    name: vector
+    status: "{{ vector_service_status }}"
