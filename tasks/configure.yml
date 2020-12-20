@@ -1,7 +1,20 @@
 ---
+- name: Remove default vector config
+  file:
+    path: /etc/vector/vector.toml
+    state: absent
+  when: vector_configure_rm_default | bool
+
+- name: Set vector config file path
+  template:
+    src: vector.default.j2
+    dest: /etc/default/vector
+  notify:
+    - restart vector
+
 - name: Provide configuration file
   template:
     src: vector.yaml.j2
-    dest: /etc/vector/vector.yaml
+    dest: "{{ vector_configure_config_path }}"
   notify:
     - reload vector

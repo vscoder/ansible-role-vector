@@ -1,0 +1,8 @@
+# /etc/default/vector
+# This file can theoretically contain a bunch of environment variables
+# for Vector.  See https://vector.dev/docs/setup/configuration/#environment-variables
+# for details.
+
+{{ ansible_managed | comment }}
+
+VECTOR_CONFIG={{ vector_configure_config_path }}

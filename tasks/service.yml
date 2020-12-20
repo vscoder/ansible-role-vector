@@ -7,4 +7,4 @@
 - name: Provide vector.service status
   systemd:
     name: vector
-    status: "{{ vector_service_status }}"
+    state: "{{ vector_service_status }}"

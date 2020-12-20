@@ -1,0 +1,16 @@
+---
+- name: Test necessary packages installed
+  apt:
+    name:
+      - python3-apt
+      - apt-transport-https
+      - ca-certificates
+      - gnupg
+    state: present
+  check_mode: yes
+  register: pkg_status
+
+- name: "Check results"
+  assert:
+    that:
+      - not pkg_status.changed

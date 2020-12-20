@@ -1,0 +1,41 @@
+---
+# Test rm
+- name: "test config"
+  stat:
+    path: "/etc/vector/vector.toml"
+  register: _old_config_file
+
+- name: "check result"
+  assert:
+    that:
+      - not _old_config_file.stat.exists
+
+# Test default
+- name: "Check line in /etc/default/vector"
+  lineinfile:
+    path: /etc/default/vector
+    line: "VECTOR_CONFIG=/etc/vector/vector.yaml"
+  check_mode: yes
+  become: yes
+  register: _default_line
+
+- name: Check result
+  assert:
+    that:
+      - not _default_line.changed
+
+# Test config
+- name: "test config"
+  stat:
+    path: "/etc/vector/vector.yaml"
+  register: _config_file
+
+- name: "check result"
+  assert:
+    that:
+      - "_config_file.stat.exists"
+      - "_config_file.stat.isreg"
+      - "_config_file.stat.path == '/etc/vector/vector.yaml'"
+      - "_config_file.stat.mode == '0644'"
+      - "_config_file.stat.pw_name == 'root'"
+      - "_config_file.stat.gr_name == 'root'"

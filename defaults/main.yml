@@ -20,18 +20,20 @@ vector_service: yes
 ###
 # Configure
 ###
+# Clean vector configurati
+vector_configure_rm_default: yes
+vector_configure_config_path: /etc/vector/vector.yaml
 vector_configure_config:
   data_dir: "/var/lib/vector"
   sources:
-    foo:
-      type: "stdin"
+    journald:
+      type: "journald"
   sinks:
-    bar:
+    out:
       inputs:
-        - "foo"
-      type: "console"
-      encoding:
-        codec: "text"
+        - "journald"
+      type: "blackhole"
+
 
 ###
 # Service
