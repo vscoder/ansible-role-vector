@@ -1,7 +1,7 @@
-Role Name
+ansible-role-vector
 =========
 
-Данная роль устанавливает vector agent https://vector.dev/
+This role installs and configures vector agent https://vector.dev/
 
 Requirements
 ------------
