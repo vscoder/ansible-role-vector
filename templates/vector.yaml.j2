@@ -1,3 +1,32 @@
+#jinja2:lstrip_blocks: True
+---
 {{ ansible_managed | comment }}
 
-{{ vector_configure_config | to_nice_yaml }}
+{% if vector_configure_data_dir is defined %}
+data_dir: {{ vector_configure_data_dir }}
+{% endif %}
+
+{% if vector_configure_log_schema is defined %}
+log_schema: 
+  {{ vector_configure_log_schema | to_nice_yaml(indent=2) | indent(width=2) }}
+{% endif %}
+
+{% if vector_configure_api is defined %}
+api: 
+  {{ vector_configure_api | to_nice_yaml(indent=2) | indent(width=2) }}
+{% endif %}
+
+{% if vector_configure_sources is defined %}
+sources: 
+  {{ vector_configure_sources | to_nice_yaml(indent=2) | indent(width=2) }}
+{% endif %}
+
+{% if vector_configure_transforms is defined %}
+transforms: 
+  {{ vector_configure_transforms | to_nice_yaml(indent=2) | indent(width=2) }}
+{% endif %}
+
+{% if vector_configure_sinks is defined %}
+sinks: 
+  {{ vector_configure_sinks | to_nice_yaml(indent=2) | indent(width=2) }}
+{% endif %}

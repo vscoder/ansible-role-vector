@@ -1,2 +1,9 @@
 ---
-# skipped
+- name: Check service state
+  service:
+    name: vector
+  register: _service
+
+- name: Test state is active
+  assert:
+    that: _service.status.ActiveState == "active"

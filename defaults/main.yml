@@ -23,16 +23,19 @@ vector_service: yes
 # Clean vector configurati
 vector_configure_rm_default: yes
 vector_configure_config_path: /etc/vector/vector.yaml
-vector_configure_config:
-  data_dir: "/var/lib/vector"
-  sources:
-    journald:
-      type: "journald"
-  sinks:
-    out:
-      inputs:
-        - "journald"
-      type: "blackhole"
+vector_configure_data_dir: "/var/lib/vector"
+#vector_configure_log_schema: {}
+vector_configure_api:
+  enabled: yes
+vector_configure_sources:
+  journald:
+    type: "journald"
+#vector_configure_transforms: {}
+vector_configure_sinks:
+  out:
+    inputs:
+      - "journald"
+    type: "blackhole"
 
 
 ###

@@ -2,6 +2,7 @@
 - name: Verify
   hosts: all
   gather_facts: false
+  become: yes
   tasks:
   - name: Test vector
     include_role:
