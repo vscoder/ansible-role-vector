@@ -1,0 +1,33 @@
+---
+- name: Add yum repo
+  yum_repository:
+    name: "{{ item.name }}"
+    description: "{{ item.name }}"
+    baseurl: "{{ item.baseurl }}"
+    gpgcheck: yes
+    repo_gpgcheck: yes
+    gpgkey: "https://repositories.timber.io/public/vector/cfg/gpg/gpg.3543DB2D0A2BC4B8.key"
+    sslverify: yes
+    metadata_expire: "300"
+    state: present
+    file: timber-vector
+  loop:
+    - name: timber-vector
+      baseurl: "https://repositories.timber.io/public/vector/rpm/el/7/$basearch"
+    - name: timber-vector-noarch
+      baseurl: "https://repositories.timber.io/public/vector/rpm/el/7/noarch"
+    - name: timber-vector-source
+      baseurl: "https://repositories.timber.io/public/vector/rpm/el/7/SRPMS"
+
+- name: "Install vector fixed version"
+  yum:
+    name: "vector-{{ vector_install_version }}"
+    state: present
+  when: vector_install_version is defined
+
+- name: "Install vector"
+  yum:
+    name: vector
+    state: present
+    #policy_rc_d: 101
+  when: vector_install_version is not defined

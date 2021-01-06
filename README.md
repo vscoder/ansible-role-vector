@@ -6,7 +6,7 @@ This role installs and configures vector agent https://vector.dev/
 Requirements
 ------------
 
-None
+See [requirements.txt](./requirements.txt)
 
 Role Variables
 --------------
@@ -24,8 +24,33 @@ Example Playbook
     - hosts: all
       roles:
         - role: ansible-role-vector
-          vector_configure_config:
-            { vector configuration }
+          vector_configure_sources:
+            { vector sources dict }
+          vector_configure_sinks:
+            { vector sinks dict }
+
+
+Test
+----
+
+Install requirements using virtualenv:
+```sh
+# Create and activate virtualenv
+python3 -m venv .venv
+sournce ./.venv/bin/activate
+# Install requirements inside of virtualenv
+python3 -m pip install -r requirements.txt
+```
+
+Test on Ubuntu 18.04 with vagrant
+```sh
+molecule test
+```
+
+Test on CentOS 7 with docker
+```sh
+molecule test --scenario-name docker
+```
 
 Makefile targets
 ----------------

@@ -1,0 +1,6 @@
+---
+vector_prepare_packages:
+  - python3-apt
+  - apt-transport-https
+  - ca-certificates
+  - gnupg

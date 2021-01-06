@@ -1,0 +1,5 @@
+---
+- name: Ensure necessary packages installed
+  yum:
+    name: "{{ vector_prepare_packages }}"
+    state: present

@@ -4,6 +4,6 @@
   gather_facts: false
   become: yes
   tasks:
-  - name: Test vector
-    include_role:
-      name: "test_vector"
+    - name: Test vector
+      include_role:
+        name: "test_vector"

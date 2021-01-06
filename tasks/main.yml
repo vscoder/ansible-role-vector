@@ -1,13 +1,23 @@
 ---
+# https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html#tag-inheritance-for-includes-blocks-and-the-apply-keyword
+- name: Include vars with any tags
+  block:
+    - name: Include os-specific variables
+      include_vars: "{{ ansible_distribution }}.yml"
+  tags:
+    - always
+
 - name: Prepare target host
-  import_tasks: prepare.yml
+  block:
+    - include_tasks: "prepare_{{ ansible_distribution }}.yml"
   when: vector_prepare | bool
   tags:
     - vector
     - vector_prepare
 
 - name: Install vector
-  import_tasks: install.yml
+  block:
+    - include_tasks: "install_{{ ansible_distribution }}.yml"
   when: vector_install | bool
   tags:
     - vector

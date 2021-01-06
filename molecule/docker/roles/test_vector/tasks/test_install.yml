@@ -1,0 +1,13 @@
+---
+- name: Test necessary packages installed
+  package:
+    name:
+      - vector
+    state: present
+  check_mode: yes
+  register: pkg_status
+
+- name: "Check results"
+  assert:
+    that:
+      - not pkg_status.changed

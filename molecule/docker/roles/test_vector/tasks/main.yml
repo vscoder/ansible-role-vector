@@ -1,0 +1,9 @@
+---
+- name: Test Install vector
+  import_tasks: test_install.yml
+
+- name: Test configure vector
+  import_tasks: test_configure.yml
+
+- name: Test Provide system service for vector
+  import_tasks: test_service.yml

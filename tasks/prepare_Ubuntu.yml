@@ -1,10 +1,6 @@
 ---
 - name: Ensure necessary packages installed
   apt:
-    name:
-      - python3-apt
-      - apt-transport-https
-      - ca-certificates
-      - gnupg
+    name: "{{ vector_prepare_packages }}"
     state: present
     cache_valid_time: 600

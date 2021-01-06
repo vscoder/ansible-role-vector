@@ -41,9 +41,15 @@ molecule_verify:
 	${MOLECULE} converge && \
 	${MOLECULE} verify
 
-molecule_test:
+molecule_test_default:
 	. ./.venv/bin/activate && \
 	${MOLECULE} test
+
+molecule_test_docker:
+	. ./.venv/bin/activate && \
+	${MOLECULE} test --scenario-name docker
+
+molecule_test: molecule_test_default molecule_test_docker
 
 molecule_destroy:
 	. ./.venv/bin/activate && \
