@@ -13,11 +13,11 @@
     file: timber-vector
   loop:
     - name: timber-vector
-      baseurl: "https://repositories.timber.io/public/vector/rpm/el/7/$basearch"
+      baseurl: "https://repositories.timber.io/public/vector/rpm/el/{{ ansible_distribution_major_version }}/$basearch"
     - name: timber-vector-noarch
-      baseurl: "https://repositories.timber.io/public/vector/rpm/el/7/noarch"
+      baseurl: "https://repositories.timber.io/public/vector/rpm/el/{{ ansible_distribution_major_version }}/noarch"
     - name: timber-vector-source
-      baseurl: "https://repositories.timber.io/public/vector/rpm/el/7/SRPMS"
+      baseurl: "https://repositories.timber.io/public/vector/rpm/el/{{ ansible_distribution_major_version }}/SRPMS"
 
 - name: "Install vector fixed version"
   yum:
