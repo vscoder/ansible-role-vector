@@ -1,11 +1,18 @@
 ---
 dependency:
   name: galaxy
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+  #flake8
 driver:
   name: vagrant
 platforms:
-  - name: instance
+  - name: bionic64
     box: ubuntu/bionic64
+  - name: centos8
+    box: centos/8
 provisioner:
   name: ansible
 verifier:
