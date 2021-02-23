@@ -1,0 +1,5 @@
+---
+- name: Generate ssh keypair
+  openssh_keypair:
+    path: "{{ molecule_yml.driver.ssh_key_file }}"
+    type: ed25519

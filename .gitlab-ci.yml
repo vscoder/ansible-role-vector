@@ -16,18 +16,20 @@ molecule_test:
   before_script:
     - curl https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
     - source "/root/.bashrc"
-    - apt-get update
-    - apt-get -y install openssh-client
-    - ssh-keygen -t ed25519 -b 256 -P "" -f ~/ssh_key
-    - >
-      yc compute instance create --zone ru-central1-b
-        --name molecule-ubuntu-2004-lts
-        --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-2004-lts
-        --ssh-key ~/ssh_key.pub
+    # - apt-get update
+    # - apt-get -y install openssh-client
+    # - ssh-keygen -t ed25519 -b 256 -P "" -f ~/ssh_key
+    # - >
+    #   yc compute instance create \
+    #     --zone ru-central1-b \
+    #     --name molecule-ubuntu-2004-lts \
+    #     --network-interface subnet-name=gitlb-runner-subnet \
+    #     --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-2004-lts \
+    #     --ssh-key ~/ssh_key.pub
   script:
-    - molecule syntax --scenario-name default
-    - molecule check --scenario-name default
-  after_script:
-    - yc compute instance delete --name molecule-ubuntu-2004-lts
+    - molecule syntax --scenario-name yandex-cloud-ci
+    - molecule test --scenario-name yandex-cloud-ci
+  # after_script:
+  #   - yc compute instance delete --name molecule-ubuntu-2004-lts
   tags:
     - docker

@@ -1,0 +1,22 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: delegated
+  zone: ru-central1-b
+  subnet_name: gitlb-runner-subnet
+  ssh_user: yc-user
+  ssh_pub_file: "~/ssh_key.pub"
+  ssh_key_file: "~/ssh_key"
+platforms:
+  - name: molecule-ubuntu-2004-lts
+    instance: molecule-ubuntu-2004-lts
+    image_family: ubuntu-2004-lts
+    # memory:
+    size_gb: 10
+    groups:
+      - ubuntu
+provisioner:
+  name: ansible
+verifier:
+  name: ansible

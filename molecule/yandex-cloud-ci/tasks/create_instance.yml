@@ -1,0 +1,43 @@
+---
+- name: initialize instance facts
+  set_fact:
+    server:
+      results: []
+  when: server is not defined
+
+- name: Create instance
+  shell: |
+    yc compute instance create \
+        --zone {{ molecule_yml.driver.zone }} \
+        --name {{ item.name }} \
+        --network-interface subnet-name={{ molecule_yml.driver.subnet_name }} \
+        --create-boot-disk image-folder-id=standard-images,image-family={{ item.image_family }} \
+        --ssh-key {{ molecule_yml.driver.ssh_key_file }}.pub \
+        --preemptible
+  register: _instance_create
+
+- name: Get management address
+  shell: 'yc compute instance get gitlab-runner --format json | jq --raw-output ".network_interfaces[0].primary_v4_address.address"'
+  register: _instance_ip
+
+- debug:
+    var: _instance_create
+
+- name: Set instance facts
+  set_fact:
+    instance:
+      changed: "{{ _instance_create.changed | bool }}"
+      name: "{{ item.name }}"
+      address: "{{ _instance_ip.stdout_lines.0 }}"
+      user: "{{ molecule_yml.driver.ssh_user }}"
+      port: "22"
+      identity_file: "{{ molecule_yml.driver.ssh_key_file }}.pub"
+
+- debug:
+    var: instance
+
+- name: update instance facts
+  set_fact:
+    server:
+      changed: "{{ instance.changed | bool }}"
+      results: "{{ server.results + [ instance ]}}"
