@@ -1,7 +1,10 @@
 image: quay.io/ansible/toolset:latest
 
 stages:
+  - lint
   - test
+
+#molecule_lint:
 
 molecule_test:
   stage: test
@@ -14,6 +17,7 @@ molecule_test:
     - >
       yc compute instance create 
         --name molecule-ubuntu-2004-lts
+        --zone ru-central1-b
         --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-2004-lts
         --ssh-key ~/ssh_key.pub
   script:
