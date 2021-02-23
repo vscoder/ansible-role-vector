@@ -2,7 +2,7 @@ stages:
   - lint
 
 before_script:
-  - make install_ansible_venv_3.8
+  - make install_ansible_venv
 
 molecule_static_analyse:
   stage: lint
@@ -11,4 +11,3 @@ molecule_static_analyse:
     - make molecule_static_analyse
   tags:
     - shell
-    - docker
