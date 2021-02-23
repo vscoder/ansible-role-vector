@@ -10,7 +10,7 @@
     yc compute instance create \
         --zone {{ molecule_yml.driver.zone }} \
         --name {{ item.name }} \
-        --network-interface subnet-name={{ molecule_yml.driver.subnet_name }} \
+        --network-interface subnet-name={{ molecule_yml.driver.subnet_name }},nat-ip-version=ipv4 \
         --create-boot-disk image-folder-id=standard-images,image-family={{ item.image_family }} \
         --ssh-key {{ molecule_yml.driver.ssh_key_file }}.pub \
         --preemptible
