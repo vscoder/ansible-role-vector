@@ -1,4 +1,10 @@
 ---
+- name: Ensure openssh-client is installed
+  apt:
+    name: openssh-client
+    state: present
+    update_cache: yes
+
 - name: Generate ssh keypair
   openssh_keypair:
     path: "{{ molecule_yml.driver.ssh_key_file }}"
