@@ -1,9 +1,9 @@
 ---
-- name: Ensure openssh-client is installed
-  apt:
-    name: openssh-client
-    state: present
-    update_cache: yes
+# - name: Ensure openssh-client is installed
+#   apt:
+#     name: openssh-client
+#     state: present
+#     update_cache: yes
 
 - name: Generate ssh keypair
   openssh_keypair:

@@ -16,8 +16,8 @@ molecule_test:
   before_script:
     - curl https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
     - source "/root/.bashrc"
-    # - apt-get update
-    # - apt-get -y install openssh-client
+    - apt-get update
+    - apt-get -y install openssh-client
     # - ssh-keygen -t ed25519 -b 256 -P "" -f ~/ssh_key
     # - >
     #   yc compute instance create \
