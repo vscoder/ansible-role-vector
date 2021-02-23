@@ -9,6 +9,7 @@
   template:
     src: vector.default.j2
     dest: /etc/default/vector
+    mode: 0644
   notify:
     - restart vector
 
