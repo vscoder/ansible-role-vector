@@ -19,9 +19,8 @@ molecule_test:
     - apt-get -y install openssh-client
     - ssh-keygen -t ed25519 -b 256 -P "" -f ~/ssh_key
     - >
-      yc compute instance create 
+      yc compute instance create --zone ru-central1-b
         --name molecule-ubuntu-2004-lts
-        --zone ru-central1-b
         --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-2004-lts
         --ssh-key ~/ssh_key.pub
   script:
