@@ -5,6 +5,7 @@ stages:
 
 before_script:
   - curl https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
+  - apt-get update
   - apt-get -y install openssh-client
   - ssh-keygen -t ed25519 -b 256 -P "" -f ~/ssh_key
   - >
