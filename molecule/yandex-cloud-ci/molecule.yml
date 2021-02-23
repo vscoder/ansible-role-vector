@@ -6,8 +6,8 @@ driver:
   zone: ru-central1-b
   subnet_name: gitlb-runner-subnet
   ssh_user: yc-user
-  ssh_pub_file: "~/ssh_key.pub"
-  ssh_key_file: "~/ssh_key"
+  ssh_pub_file: "/tmp/ssh_key.pub"
+  ssh_key_file: "/tmp/ssh_key"
 platforms:
   - name: molecule-ubuntu-2004-lts
     instance: molecule-ubuntu-2004-lts
@@ -18,5 +18,8 @@ platforms:
       - ubuntu
 provisioner:
   name: ansible
+  log: True
+  options:
+    vvv: True
 verifier:
   name: ansible
