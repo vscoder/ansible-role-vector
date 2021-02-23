@@ -4,20 +4,28 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: instance
+  - name: docker-centos8
     #image: docker.io/geerlingguy/docker-ubuntu1804-ansible:latest
     #image: joepublic/molecule-ubuntu:18.04
     #image: jrei/systemd-ubuntu:18.04
-    image: milcom/centos7-systemd
+    #image: leandelivery/docker-systemd:ubuntu-18.04
+    #image: milcom/centos7-systemd
+    #image: geerlingguy/docker-centos8-ansible
+    #image: leandelivery/docker-systemd:centos8
+    image: monolithprojects/systemd-centos8:latest
     pre_build_image: true
-    privileged: True
-    volume_mounts:
-      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    privileged: true
+    security_opts:
+      - seccomp=unconfined
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
     tmpfs:
-      - /run
       - /tmp
+      - /run
+    capabilities:
+      - SYS_ADMIN
 provisioner:
   name: ansible
-  #log: true
+  log: true
 verifier:
   name: ansible
