@@ -9,6 +9,8 @@ molecule_lint:
   script:
     - molecule lint --scenario-name default
     - molecule syntax --scenario-name default
+  tags:
+    - docker
 
 molecule_test:
   stage: test
