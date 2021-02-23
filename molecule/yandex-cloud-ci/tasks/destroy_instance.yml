@@ -1,3 +1,3 @@
 ---
 - name: Destroy instance
-  shell: yc compute instance delete {{ item.name }}
+  shell: yc compute instance delete {{ item.name }} || true
