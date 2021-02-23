@@ -1,4 +1,4 @@
-image: quay.io/ansible/toolset
+image: quay.io/ansible/toolset:latest
 
 stages:
   - test
