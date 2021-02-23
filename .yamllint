@@ -4,7 +4,6 @@ extends: default
 
 ignore: |
   .venv/
-  molecule/yandex-cloud-ci/
 
 rules:
   braces:
