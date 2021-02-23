@@ -7,8 +7,7 @@ stages:
 molecule_lint:
   stage: lint
   script:
-    - molecule lint --scenario-name default
-    - molecule syntax --scenario-name default
+    - molecule lint
   tags:
     - docker
 
@@ -26,6 +25,7 @@ molecule_test:
         --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-2004-lts
         --ssh-key ~/ssh_key.pub
   script:
+    - molecule syntax --scenario-name default
     - molecule check --scenario-name default
   after_script:
     - yc compute instance delete --name molecule-ubuntu-2004-lts
