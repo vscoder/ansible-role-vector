@@ -1,13 +1,15 @@
+image: quay.io/ansible/toolset
+
 stages:
   - lint
 
 before_script:
-  - make install_ansible_venv
+  - curl https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
 
 molecule_static_analyse:
   stage: lint
   script:
-    - make molecule_init_scenario
-    - make molecule_static_analyse
+    - molecule lint --scenario-name default
+    - molecule syntax --scenario-name default
   tags:
-    - shell
+    - docker
