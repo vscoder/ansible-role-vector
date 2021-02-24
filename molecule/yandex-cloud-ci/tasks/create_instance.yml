@@ -17,7 +17,7 @@
   register: _instance_create
 
 - name: Get management address
-  shell: 'yc compute instance get gitlab-runner --format json | jq --raw-output ".network_interfaces[0].primary_v4_address.address"'
+  shell: 'yc compute instance get {{ item.name }} --format json | jq --raw-output ".network_interfaces[0].primary_v4_address.address"'
   register: _instance_ip
 
 - debug:
