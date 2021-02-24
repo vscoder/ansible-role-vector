@@ -29,10 +29,7 @@ molecule_test:
   script:
     #- molecule destroy --scenario-name yandex-cloud-ci
     #- molecule create --scenario-name yandex-cloud-ci
-    - molecule test --scenario-name yandex-cloud-ci --parallel
-    # - cat "/tmp/ssh_key"
-    # - cat "/tmp/ssh_key.pub"
-  # after_script:
-  #   - yc compute instance delete --name molecule-ubuntu-2004-lts
+    #- molecule test --scenario-name yandex-cloud-ci --parallel
+    - molecule test --scenario-name yandex-cloud-ci
   tags:
     - docker
