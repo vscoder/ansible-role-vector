@@ -2,6 +2,7 @@
 - name: Converge
   hosts: all
   gather_facts: no
+  become: yes
   tasks:
     - name: Wait 300 seconds for port 22 to become open and contain "OpenSSH"
       wait_for:
