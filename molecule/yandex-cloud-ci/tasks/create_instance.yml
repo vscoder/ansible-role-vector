@@ -31,7 +31,7 @@
       address: "{{ _instance_ip.stdout_lines.0 }}"
       user: "{{ molecule_yml.driver.ssh_user }}"
       port: "22"
-      identity_file: "{{ molecule_yml.driver.ssh_key_file }}.pub"
+      identity_file: "{{ molecule_yml.driver.ssh_key_file }}"
 
 - debug:
     var: instance
