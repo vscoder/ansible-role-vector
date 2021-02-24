@@ -18,7 +18,8 @@ platforms:
       - ubuntu
 provisioner:
   name: ansible
-  log: True
+  no_log: False
+  timeout: 120
   options:
     vvv: True
 verifier:

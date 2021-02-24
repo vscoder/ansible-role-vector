@@ -27,7 +27,8 @@ molecule_test:
     #     --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-2004-lts \
     #     --ssh-key ~/ssh_key.pub
   script:
-    - molecule test --scenario-name yandex-cloud-ci
+    - molecule create --scenario-name yandex-cloud-ci
+    - molecule converge --scenario-name yandex-cloud-ci
     # - cat "/tmp/ssh_key"
     # - cat "/tmp/ssh_key.pub"
   # after_script:
