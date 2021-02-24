@@ -16,13 +16,13 @@ platforms:
     size_gb: 10
     groups:
       - ubuntu
-  # - name: molecule-centos-8
-  #   instance: molecule-centos-8
-  #   image_family: centos-8
-  #   # memory:
-  #   size_gb: 10
-  #   groups:
-  #     - centos
+  - name: molecule-centos-8
+    instance: molecule-centos-8
+    image_family: centos-8
+    #memory:
+    size_gb: 10
+    groups:
+      - centos
 provisioner:
   name: ansible
   no_log: False
