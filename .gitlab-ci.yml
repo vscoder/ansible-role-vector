@@ -29,7 +29,7 @@ molecule_test:
   script:
     #- molecule destroy --scenario-name yandex-cloud-ci
     #- molecule create --scenario-name yandex-cloud-ci
-    #- molecule test --scenario-name yandex-cloud-ci --parallel
-    - molecule test --scenario-name yandex-cloud-ci
+    - molecule test --scenario-name yandex-cloud-ci --parallel
+    #- molecule test --scenario-name yandex-cloud-ci
   tags:
     - docker
