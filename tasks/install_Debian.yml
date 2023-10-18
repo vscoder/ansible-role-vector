@@ -1,0 +1,28 @@
+---
+- name: Add apt key for Debian
+  apt_key:
+    url: https://repositories.timber.io/public/vector/cfg/gpg/gpg.3543DB2D0A2BC4B8.key
+    state: present
+
+- name: Add apt repo for Debian
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+    filename: timber-vector
+  loop:
+    - "deb https://repositories.timber.io/public/vector/deb/debian {{ ansible_distribution_release }} main"
+    - "deb-src https://repositories.timber.io/public/vector/deb/debian {{ ansible_distribution_release }} main"
+
+- name: "Install vector fixed version on Debian"
+  apt:
+    name: "vector={{ vector_install_version }}"
+    state: present
+    cache_valid_time: 600
+  when: vector_install_version is defined
+
+- name: "Install vector on Debian"
+  apt:
+    name: vector
+    state: present
+    cache_valid_time: 600
+  when: vector_install_version is not defined
